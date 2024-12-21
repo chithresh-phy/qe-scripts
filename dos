@@ -20,7 +20,7 @@ touch $output
 gnome-terminal -- fish -c "tail -f $output; exec fish; $SHELL"
 
 # Running the DOS Calculation in Quantum Espresso
-fish -c "mpirun -np 2 dos.x -inp $input > $output"
+fish -c "mpirun -np 6 dos.x -inp $input > $output"
 
 # Send Notification
 file_to_check="CRASH"
