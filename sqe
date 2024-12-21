@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Error: Argument missing! Please provide a 'Version Number'!"
+    exit 1
+fi
+
+# Source QE version Specified by User
+source_qe="set -x PATH "~/src/QE/$1/bin" $PATH"
+
+# Welcome Message
+message="Quantum Espresso Version $1 is Sourced and Ready to Use!"
+
+# Open new terminal window with QE Sourced
+gnome-terminal -- fish -c "echo '$message';$source_qe; exec fish"

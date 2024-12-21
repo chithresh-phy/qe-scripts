@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Error: Argument missing! Please provide an argument!"
+    exit 1
+fi
+
+
+# Get the Input filename from the argument
+input="$1"
+
+# Remove the .in extension
+name="${input%.in}"
+
+# Create the .out Extension & the output file
+output="${name}.out"
+touch $output
+
+# Open a new terminal to tail the output
+gnome-terminal -- fish -c "tail -f $output; exec fish; $SHELL"
+
+# Running the DOS Calculation in Quantum Espresso
+fish -c "mpirun -np 2 dos.x -inp $input > $output"
+
+# Send Notification
+file_to_check="CRASH"
+if [ -f "$file_to_check" ]; then
+    notify-send "Quantum Espresso" "Error in DOS Calculation! Error File is opened in GEdit"
+    gedit $file_to_check
+else
+	notify-send "Quantum Espresso" "DOS Calculation for $input has completed Successfully!"
+fi

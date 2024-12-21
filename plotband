@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Error: Argument missing! Please provide an argument!"
+    exit 1
+fi
+
+
+# Get the Input filename from the argument
+input="$1"
+
+# Remove the .in extension
+name="${input%.in}"
+
+# Create the .out Extension
+output="${name}.out"
+
+# Running the Plotband tool in Quantum Espresso
+fish -c "plotband.x < $input > $output"
