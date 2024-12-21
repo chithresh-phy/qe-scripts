@@ -20,7 +20,7 @@ touch $output
 gnome-terminal -- fish -c "tail -f $output; exec fish; $SHELL"
 
 # Running the Bands Calculation in Quantum Espresso
-fish -c "mpirun -np 6 bands.x -inp $input > $output"
+fish -c "mpirun -np 4 bands.x -inp $input > $output"
 
 # Send Notification
 file_to_check="CRASH"
