@@ -26,7 +26,7 @@ fish -c "mpirun -np 4 pw.x -inp $input > $output"
 file_to_check="CRASH"
 if [ -f "$file_to_check" ]; then
     notify-send "Quantum Espresso" "Error in PWSCF Calculation! Error File is opened in GEdit"
-    gedit $file_to_check
+    gnome-text-editor $file_to_check
 else
 	notify-send "Quantum Espresso" "PWSCF Calculation for $input has completed Successfully!"
 fi
